@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+  <body>
+
+    <ui:composition template="./WEB-INF/templates/template.xhtml">
+
+      <ui:define name="metadata">
+        <f:metadata>  
+          <f:viewParam name="id" value="#{modifierNom.id}"  
+                       required="true"/>  
+          <f:viewAction action="#{modifierNom.loadCompte}"/>  
+        </f:metadata>
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form>
+
+            <h:panelGrid columns="3">
+              <h:outputLabel value="Id :" for="id" />
+              <h:inputText id="id" value="#{modifierNom.compte.id}" readonly="true" />
+              <h:message for="id"/>
+
+              <h:outputLabel value="Nom:" for="nom" />
+              <h:inputText id="nom" value="#{modifierNom.compte.nom}" title="Nom" />
+              <h:message for="nom"/>
+
+              <h:outputLabel value="Solde:" for="solde" />
+              <h:inputText id="solde" value="#{modifierNom.compte.solde}" readonly="true" />
+              <h:message for="solde"/>
+
+              <h:commandButton value='Enregistrer le nouveau nom'
+                               action="#{modifierNom.enregistrer}" />
+            </h:panelGrid>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

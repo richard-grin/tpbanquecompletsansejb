@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <body>
+
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+      <ui:param name='titre' value="Transfert d'argent entre 2 comptes avec Ajax"/>
+
+      <ui:define name="content">
+        <h:form id="form">
+          <h:panelGrid columns="4">
+            Id compte source : 
+            <h:inputText id="source" size="3" value="#{transfertAjax.idSource}"
+                         required="true" label='id du compte source'
+                         converterMessage="L'id est un nombre entier"
+                         validator="#{transfertAjax.validateIdSource}">
+              <f:ajax render="nomSource messageSource" />
+            </h:inputText>
+            <h:outputText id="nomSource" value="#{transfertAjax.compteSource.nom}" />
+            <h:message id="messageSource" for="source"/>
+            Id compte destination : 
+            <h:inputText id="destination" size="3" value="#{transfertAjax.idDestination}"
+                         required="true"
+                         converterMessage="L'id est un nombre entier"
+                         validator="#{transfertAjax.validateIdDestination}">
+              <f:ajax render="nomDestination messageDestination" />
+            </h:inputText>
+            <h:outputText id="nomDestination" value="#{transfertAjax.compteDestination.nom}" />
+            <h:message id="messageDestination" for="destination" />
+            Montant :
+            <h:inputText id="montant" size="3" value="#{transfertAjax.montant}"
+                         required="true"
+                         converterMessage="L'id est un nombre entier" />
+            <h:message for="montant" errorStyle="color: red"/>
+            <!-- Juste pour l'alignement ; <br/> aurait aussi convenu -->
+
+            <h:commandButton id="enregistrement" value="Enregistrer"
+                             action="#{transfertAjax.enregistrer()}" />
+          </h:panelGrid>
+
+        </h:form>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

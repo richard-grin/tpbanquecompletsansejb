@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+  <body>
+
+    <ui:composition template="/WEB-INF/templates/templateFlot.xhtml">
+
+      <ui:define name="barreNavigation">
+        <h2>Explications</h2>
+        <h:link id="versSource"
+                outcome="source" value="Source >"
+                title="Source du transfert"/>
+      </ui:define>
+
+      <ui:define name="contenuPage">
+        <p>Vous allez donner les informations nécessaires au transfert d'argent :</p>
+        <ol>
+          <li><h:link id="source" outcome='source' 
+                      value='Désigner le compte source'/></li>
+          <li><h:link id="destination" outcome='destination' 
+                      value='Désigner le compte destination'/></li>
+          <li><h:link id="montant" outcome='montant' 
+                      value='Donner le montant'/></li>
+          <li><h:link id="confirmation" outcome='confirmation' 
+                      value='Confirmer le transfert'/></li>
+        </ol>
+
+        <h:button outcome='source' 
+                  value='Entrer les informations'/>
+        <p>
+          Transfert de #{flotTransfert.montant} entre le compte de 
+          #{flotTransfert.compteSource.nom} 
+          (id=#{flotTransfert.compteSource.id})
+          et le compte de
+          #{flotTransfert.compteDestination.nom} 
+          (id=#{flotTransfert.compteDestination.id})
+        </p>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

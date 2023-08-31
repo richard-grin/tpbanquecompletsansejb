@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+  <body>
+
+    <ui:composition template="/WEB-INF/templates/templateFlot.xhtml">
+      <ui:param name="titre" 
+                value="Destination pour transfert d'argent entre comptes" />
+
+      <ui:define name="barreNavigation">
+        <h:link outcome="flotTransfert" value="&lt; Explications"
+                title="Explications, sans enregistrement de la source"/>
+        <h2>Source du transfert</h2>
+        <h:link outcome="destination" value="Destination &gt;"
+                title="Destination, sans enregistrement de la source"/>
+      </ui:define>
+
+      <ui:define name="contenuPage">
+        <f:view>
+          <h:form>
+            <h1><h:outputText value="Désignez le compte source du transfert"/></h1>
+            <p:dataTable value="#{flotTransfert.comptes}" var="item"
+                         selection="#{flotTransfert.compteSource}"
+                         rowKey="#{item.id}"
+                         paginator="true" rows="10"
+                         rowsPerPageTemplate="2,5,10,20">
+              <p:column selectionMode="single" style="width:2%"/>
+              <p:column filterBy="#{item.id}"
+                        sortBy="#{item.id}">
+                <f:facet name="header">
+                  <h:outputText value="Id"/>
+                </f:facet>
+                <h:outputText value="#{item.id}"/>
+              </p:column>
+              <p:column filterBy="#{item.nom}"
+                        sortBy="#{item.nom}">
+                <f:facet name="header">
+                  <h:outputText value="Nom"/>
+                </f:facet>
+                <h:outputText value="#{item.nom}"/>
+              </p:column>
+              <p:column sortBy="#{item.solde}">
+                <f:facet name="header">
+                  <h:outputText value="Solde"/>
+                </f:facet>
+                <h:outputText value="#{item.solde}"/>
+              </p:column>
+            </p:dataTable>
+            <br/>
+            <h:commandButton action="destination?faces-redirect=true" 
+                             value="Enregistrer la source"
+                             title="et passer à la page de destination"/>
+          </h:form>
+
+          <p>
+            Transfert de #{flotTransfert.montant} entre le compte de 
+            #{flotTransfert.compteSource.nom} 
+            (id=#{flotTransfert.compteSource.id})
+            et le compte de
+            #{flotTransfert.compteDestination.nom} 
+            (id=#{flotTransfert.compteDestination.id})
+          </p>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

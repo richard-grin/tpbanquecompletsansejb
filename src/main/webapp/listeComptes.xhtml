@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+  <body>
+
+    <ui:composition template="./WEB-INF/templates/template.xhtml">
+      <ui:param name='titre' value='Liste de tous les comptes'/>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form>
+            <p:dataTable value="#{listeComptes.allComptes}" var="item"
+                         tableStyle="width: auto;" paginator="true"
+                         rowsPerPageTemplate="2,4,8,10" rows="4"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         >
+              <p:column width="40"  style="border-width: 1px;"
+                        sortBy="#{item.id}">
+                <f:facet name="header">
+                  <h:outputText value="Id"/>
+                </f:facet>
+                <h:link value="#{item.id}" outcome="mouvement?id=#{item.id}"/>
+              </p:column>
+              <p:column width="300" sortBy="#{item.nom}"
+                        filterBy="#{item.nom}">
+                <f:facet name="header">
+                  <h:outputText value="Nom"/>
+                </f:facet>
+                <h:outputText value="#{item.nom}"/>
+              </p:column>
+              <p:column style="text-align:right;" width="70"
+                        sortBy="#{item.solde}"
+                        filterBy="#{item.solde}"
+                        filterFunction="#{listeComptes.filterBySolde}"
+                        >
+<!--                <f:facet name="filter">
+                  <p:inputText title="Filtre les comptes qui ont un solde supérieur à cette valeur">
+                    <f:ajax/>
+                  </p:inputText>
+                </f:facet>-->
+
+                <f:facet name="header">
+                  <h:outputText value="Solde"/>
+                </f:facet>
+                <h:outputText value="#{item.solde}">
+                  <f:convertNumber pattern="###,###,##0"/>
+                </h:outputText>
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Opérations"/>
+                </f:facet>
+
+                <p:commandLink title="Supprimer le compte de #{item.nom}"
+                               action="#{listeComptes.supprimerCompte(item)}">
+                  <h:graphicImage name="images/del.png" />
+                  <p:confirm header="Confirmation de suppression"
+                             message="Voulez-vous vraiment supprimer ?" />
+                </p:commandLink>
+                <br/>
+                <h:link title="Modifier le nom #{item.nom}"
+                        value="Modifier le nom"
+                        outcome="/modifierNom?id=#{item.id}"  />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText escape="false" value="Historique&lt;br/>opérations"/>
+                </f:facet>
+                <h:link 
+                  title="Afficher les opérations sur le compte de #{item.nom}"
+                  value="Détails"
+                  outcome="/operations?id=#{item.id}" />
+              </p:column>
+
+            </p:dataTable>
+
+            <p:confirmDialog global="true">
+              <p:commandButton value="Oui" type="button" 
+                               styleClass="ui-confirmdialog-yes"/>
+              <p:commandButton value="Non" type="button" 
+                               styleClass="ui-confirmdialog-no"/>
+            </p:confirmDialog>
+
+          </h:form>
+
+          <h:messages/>
+        </f:view>
+
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+  <body>
+
+    <ui:composition template="/WEB-INF/templates/templateFlot.xhtml">
+      <ui:param name="titre" 
+                value="Confirmation du transfert d'argent entre comptes"/>
+
+      <ui:define name="barreNavigation">
+        <h:link outcome="montant" value="&lt; Montant"
+                title="Montant du transfert"/>
+        <h2>Confirmation du transfert</h2>
+
+      </ui:define>
+
+      <ui:define name="contenuPage">
+        <h2>Données du transfert</h2>
+        <h:panelGrid columns="2">
+          Source : 
+          <h:panelGroup> 
+            compte de #{flotTransfert.compteSource.nom} 
+            (id=#{flotTransfert.compteSource.id})
+          </h:panelGroup>
+          Destination : 
+          <h:panelGroup>
+            compte de #{flotTransfert.compteDestination.nom} 
+            (id=#{flotTransfert.compteDestination.id})
+          </h:panelGroup>
+          Montant du transfert : #{flotTransfert.montant}
+        </h:panelGrid>
+        <h:form id="form">
+          <h:commandButton action="#{flotTransfert.enregistrer()}" 
+                           value="Confirmer ce transfert"
+                           title="Lancer ce transfert"/>
+          <h:messages style="color: red;"/>
+        </h:form>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>
