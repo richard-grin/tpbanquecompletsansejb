@@ -1,6 +1,6 @@
 package fr.grin.tpbanque.entities;
 
-import fr.grin.tpbanque.services.CompteException;
+import fr.grin.tpbanque.service.CompteException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

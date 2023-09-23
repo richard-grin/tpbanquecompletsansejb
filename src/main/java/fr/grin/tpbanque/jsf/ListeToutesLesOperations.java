@@ -1,6 +1,6 @@
 package fr.grin.tpbanque.jsf;
 
-import fr.grin.tpbanque.services.GestionnaireOperationBancaire;
+import fr.grin.tpbanque.service.GestionnaireOperationBancaire;
 import fr.grin.tpbanque.entities.OperationBancaire;
 import java.util.List;
 import jakarta.inject.Named;

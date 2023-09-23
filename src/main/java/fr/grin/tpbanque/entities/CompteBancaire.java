@@ -1,6 +1,6 @@
 package fr.grin.tpbanque.entities;
 
-import fr.grin.tpbanque.services.CompteException;
+import fr.grin.tpbanque.service.CompteException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +92,7 @@ public class CompteBancaire implements Serializable {
    * @param description description de l'opération.
    */
   public void ajoutOperation(String description) {
-    operations.add(new OperationBancaire(description, -1));
+    operations.add(new OperationBancaire(description, 0));
   }
 
   @Override

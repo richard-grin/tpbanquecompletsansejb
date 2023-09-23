@@ -1,6 +1,6 @@
 package fr.grin.tpbanque.jsf;
 
-import fr.grin.tpbanque.services.GestionnaireCompte;
+import fr.grin.tpbanque.service.GestionnaireCompte;
 import fr.grin.tpbanque.entities.CompteBancaire;
 import jakarta.inject.Named;
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class ModifierNom implements Serializable {
   @Inject
   private GestionnaireCompte gestionnaireCompte;
 
-  private Long id;
+  private Long idCompte;
   private CompteBancaire compte;
   private String nom;
   private String nomAncien;
@@ -32,12 +32,12 @@ public class ModifierNom implements Serializable {
     this.nom = nom;
   }
 
-  public Long getId() {
-    return id;
+  public Long getIdCompte() {
+    return idCompte;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setIdCompte(Long idCompte) {
+    this.idCompte = idCompte;
   }
 
   public CompteBancaire getCompte() {
@@ -45,7 +45,7 @@ public class ModifierNom implements Serializable {
   }
 
   public void loadCompte() {
-    compte = gestionnaireCompte.findById(id);
+    compte = gestionnaireCompte.findById(idCompte);
     this.nomAncien = compte.getNom();
   }
 

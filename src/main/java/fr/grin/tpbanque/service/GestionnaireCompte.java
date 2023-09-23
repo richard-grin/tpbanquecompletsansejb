@@ -1,4 +1,4 @@
-package fr.grin.tpbanque.services;
+package fr.grin.tpbanque.service;
 
 import fr.grin.tpbanque.entities.CompteBancaire;
 import jakarta.annotation.PostConstruct;
@@ -31,7 +31,8 @@ import java.util.logging.Logger;
         properties = {
           // "zeroDateTimeBehavior=CONVERT_TO_NULL",
           "useSSL=false",
-          "allowPublicKeyRetrieval=true"
+          "allowPublicKeyRetrieval=true",
+          "driverClass=com.mysql.cj.jdbc.Driver"
         }
 )
 @ApplicationScoped

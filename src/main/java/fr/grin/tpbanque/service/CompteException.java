@@ -1,4 +1,4 @@
-package fr.grin.tpbanque.services;
+package fr.grin.tpbanque.service;
 
 /**
  * Exception lancée en cas de problème sur les comptes bancaires.

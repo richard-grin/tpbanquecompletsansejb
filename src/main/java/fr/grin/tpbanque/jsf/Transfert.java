@@ -1,6 +1,6 @@
 package fr.grin.tpbanque.jsf;
 
-import fr.grin.tpbanque.services.GestionnaireCompte;
+import fr.grin.tpbanque.service.GestionnaireCompte;
 import fr.grin.tpbanque.entities.CompteBancaire;
 import jakarta.ejb.EJBTransactionRolledbackException;
 import jakarta.inject.Named;

@@ -1,4 +1,4 @@
-package fr.grin.tpbanque.services;
+package fr.grin.tpbanque.service;
 
 import fr.grin.tpbanque.entities.CompteBancaire;
 import jakarta.enterprise.context.ApplicationScoped;
